@@ -1,3 +1,4 @@
+// Fix SVG import issue
 import React from 'react';
 import HonoIcon from './icons/hono.svg';
 import BunIcon from './icons/bun.svg';
