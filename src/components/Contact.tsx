@@ -1,4 +1,3 @@
-
 import { motion } from 'framer-motion';
 import { Mail, MessageSquare } from 'lucide-react';
 
@@ -37,7 +36,7 @@ const Contact = () => {
                         <div className="absolute inset-0 bg-accent translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
                         <span className="relative flex items-center gap-2 group-hover:text-white transition-colors">
                             <Mail className="w-5 h-5" />
-                            <span>Initialize Protocol</span>
+                            <span>Initialize Handshake</span>
                         </span>
                     </a>
 
