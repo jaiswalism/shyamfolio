@@ -1,0 +1,264 @@
+{
+    "meta": {
+        "version": "1.2.1",
+        "lastUpdated": "2026-02-12",
+        "source": "Deep Codebase Extraction (Restored Structure)"
+    },
+    "colorSystem": {
+        "background": {
+            "default": "#0b0f14",
+            "surface": "#121826",
+            "card": "rgba(22, 29, 45, 0.6)",
+            "overlay": "rgba(0, 0, 0, 0.4)"
+        },
+        "accent": {
+            "primary": "#ff79c6",
+            "secondary": "#bd93f9",
+            "cyan": "#8be9fd",
+            "success": "#50fa7b",
+            "warning": "#ffb86c",
+            "danger": "#ff5555",
+            "hover": "#ff90d0"
+        },
+        "text": {
+            "primary": "#f8f8f2",
+            "secondary": "#b3b9c5",
+            "muted": "#6272a4",
+            "inverse": "#0b0f14"
+        },
+        "effects": {
+            "glow": {
+                "primary": "rgba(255, 121, 198, 0.5)",
+                "subtle": "rgba(255, 121, 198, 0.2)"
+            },
+            "gradients": {
+                "radial": "radial-gradient(circle at 50% 0%, rgba(255, 121, 198, 0.05), transparent 70%)",
+                "text": "linear-gradient(to right, #ff79c6, #bd93f9)"
+            }
+        }
+    },
+    "typography": {
+        "fontFamilies": {
+            "sans": [
+                "Space Grotesk",
+                "Inter",
+                "system-ui",
+                "sans-serif"
+            ],
+            "mono": [
+                "JetBrains Mono",
+                "monospace"
+            ]
+        },
+        "styles": {
+            "hero": {
+                "mobile": "text-5xl font-bold tracking-tighter leading-[0.9]",
+                "desktop": "text-7xl lg:text-8xl font-bold tracking-tighter leading-[0.9]",
+                "effects": [
+                    "glitch-wrapper",
+                    "bg-clip-text",
+                    "text-transparent bg-gradient-to-r"
+                ]
+            },
+            "sectionHeader": {
+                "size": "text-4xl md:text-5xl",
+                "weight": "font-bold",
+                "color": "white",
+                "transform": "uppercase (contextual)",
+                "tracking": "tracking-tighter"
+            },
+            "body": {
+                "lead": "text-lg sm:text-xl font-light leading-relaxed",
+                "default": "text-base leading-relaxed text-text-secondary",
+                "small": "text-sm text-text-muted"
+            },
+            "badge": {
+                "family": "font-mono",
+                "size": "text-[10px] sm:text-xs",
+                "transform": "uppercase",
+                "tracking": "tracking-wider",
+                "base": "bg-white/5 border border-white/5"
+            },
+            "code": {
+                "family": "font-mono",
+                "size": "text-sm"
+            }
+        }
+    },
+    "layout": {
+        "grid": {
+            "container": "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
+            "columns": {
+                "projects": "grid-cols-1 md:grid-cols-2 lg:grid-cols-3",
+                "hero": "grid grid-cols-1 lg:grid-cols-2",
+                "skills": "grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6",
+                "footer": "grid-cols-1 md:grid-cols-2 lg:grid-cols-12"
+            },
+            "gap": {
+                "default": "gap-8",
+                "hero": "gap-12",
+                "skills": "gap-4"
+            }
+        },
+        "spacing": {
+            "sectionPadding": "py-20 md:py-24",
+            "heroPadding": "pt-20",
+            "cardPadding": "p-6"
+        }
+    },
+    "components": {
+        "hero": {
+            "style": "Split layout: Text content left, Visual/Terminal right.",
+            "elements": {
+                "background": [
+                    "RadialGradient",
+                    "GlowingOrb"
+                ],
+                "badge": "Pill shape, accent border/bg, animated ping indicator",
+                "visual": "Rotated glass panel with fake backend code, floating icons"
+            }
+        },
+        "cards": {
+            "project": {
+                "background": "bg-card-bg backdrop-blur-xl",
+                "border": "border border-white/10",
+                "radius": "rounded-xl",
+                "hover": "group-hover:opacity-60 (bg glow), border-accent/30",
+                "contentLayout": "Flex column, tech stack at bottom",
+                "features": "Abstract 'Layers' icon decoration"
+            },
+            "experience": {
+                "style": "Timeline node card",
+                "background": "bg-card-bg (current: border-accent/20), bg-card-bg/50 (past: border-white/5)",
+                "connector": "Angled connector arrow to timeline spine"
+            },
+            "skill": {
+                "style": "Icon + Label vertical stack",
+                "background": "bg-white/5 backdrop-blur-sm",
+                "hover": "scale-110 (icon)"
+            }
+        },
+        "buttons": {
+            "primary": {
+                "bg": "bg-accent",
+                "text": "text-dark font-bold",
+                "hover": "scale-105 active:scale-95",
+                "features": "Slide-up white/20 overlay effect"
+            },
+            "white": {
+                "bg": "bg-white",
+                "text": "text-dark font-bold",
+                "hover": "group-hover:text-white (bg-accent slide-up)",
+                "features": "Used in Contact section"
+            },
+            "secondary": {
+                "bg": "transparent",
+                "border": "border border-white/10",
+                "text": "text-white",
+                "hover": "hover:bg-white/5 hover:border-accent/50",
+                "backdrop": "backdrop-blur-sm"
+            }
+        },
+        "badges": {
+            "techStack": {
+                "bg": "bg-white/5",
+                "border": "border border-white/5",
+                "text": "text-[10px] sm:text-xs font-medium text-text-primary",
+                "radius": "rounded"
+            },
+            "status": {
+                "bg": "bg-accent/10",
+                "border": "border border-accent/20",
+                "text": "text-accent font-mono text-xs"
+            },
+            "context": {
+                "bg": "bg-white/5",
+                "border": "border border-white/5",
+                "text": "text-xs font-semibold tracking-widest text-text-muted"
+            }
+        }
+    },
+    "motion": {
+        "library": "framer-motion",
+        "defaults": {
+            "duration": 0.5,
+            "ease": "easeOut"
+        },
+        "animations": {
+            "fadeInUp": {
+                "initial": {
+                    "opacity": 0,
+                    "y": 20
+                },
+                "animate": {
+                    "opacity": 1,
+                    "y": 0
+                }
+            },
+            "fadeInLeft": {
+                "initial": {
+                    "opacity": 0,
+                    "x": -20
+                },
+                "animate": {
+                    "opacity": 1,
+                    "x": 0
+                }
+            },
+            "scaleIn": {
+                "initial": {
+                    "opacity": 0,
+                    "scale": 0.9
+                },
+                "animate": {
+                    "opacity": 1,
+                    "scale": 1
+                }
+            },
+            "float": "animate-float (6s ease-in-out infinite)",
+            "pulse": "animate-pulse-slow (4s infinite)",
+            "glow": "animate-glow (2s infinite alternate)",
+            "glitch": "animate-glitch (1s linear infinite)"
+        },
+        "interaction": {
+            "hoverScale": "scale-105",
+            "hoverGlow": "opacity increase on decorative gradients"
+        }
+    },
+    "visualElements": {
+        "illustrations": {
+            "allowed": [
+                "Abstract geometric shapes",
+                "Code/Terminal interfaces",
+                "Glowing orbs/gradients",
+                "Grid patterns"
+            ],
+            "forbidden": [
+                "Realistic stock photos",
+                "Flat vector human illustrations",
+                "Cartoons"
+            ]
+        },
+        "icons": {
+            "library": "Lucide React",
+            "style": "Stroke based, simple"
+        }
+    },
+    "language": {
+        "tone": {
+            "primary": "Technical, execution-focused, confident",
+            "keywords": [
+                "Shipping",
+                "Deployed",
+                "Production-grade",
+                "Scalable",
+                "Artifacts",
+                "Systems"
+            ]
+        },
+        "formatting": {
+            "titles": "Title Case",
+            "labels": "Uppercase (often font-mono)"
+        }
+    }
+}
