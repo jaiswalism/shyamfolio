@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
-import TechIcon from './TechIcon';
+import TechIcon, { TechIconName } from './TechIcon';
 
-const techStack = [
+const techStack: TechIconName[] = [
     'React',
     'Next.js',
     'TypeScript',
@@ -56,7 +56,7 @@ const Skills = () => {
                     </motion.p>
                 </div>
 
-                {/* Static Context Chips */}
+                {/* Context Chips */}
                 <div className="flex flex-wrap justify-center gap-4 mb-12">
                     {contextChips.map((chip, index) => (
                         <div
@@ -69,17 +69,17 @@ const Skills = () => {
                                     backgroundColor: chip.color,
                                     animation: `blink ${chip.duration}s ease-in-out infinite`,
                                 }}
-                            ></span>
+                            />
                             {chip.label}
                         </div>
                     ))}
                 </div>
 
-                {/* Unified Grid */}
+                {/* Tech Grid */}
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
                     {techStack.map((tech, index) => (
                         <motion.div
-                            key={index}
+                            key={tech}
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
@@ -87,12 +87,11 @@ const Skills = () => {
                             className="group relative flex flex-col items-center justify-center p-6 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl transition-all duration-300"
                         >
                             <div className="mb-4 transition-transform duration-300 group-hover:scale-110">
-                                <TechIcon name={tech} />
+                                <TechIcon name={tech} className="w-10 h-10 text-white" />
                             </div>
                             <span className="text-sm font-medium text-text-secondary group-hover:text-white transition-colors text-center leading-tight">
                                 {tech}
                             </span>
-
                         </motion.div>
                     ))}
                 </div>
@@ -100,13 +99,8 @@ const Skills = () => {
 
             <style>{`
         @keyframes blink {
-          0%,
-          100% {
-            opacity: 0.4;
-          }
-          50% {
-            opacity: 1;
-          }
+          0%, 100% { opacity: 0.4; }
+          50% { opacity: 1; }
         }
       `}</style>
         </section>
