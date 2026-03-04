@@ -1,3 +1,5 @@
+'use client';
+
 import { motion } from 'framer-motion';
 import { ArrowRight, Github, Linkedin, Twitter, Terminal, Cpu } from 'lucide-react';
 import { GlowingOrb, GridBackground } from './VisualEffects';

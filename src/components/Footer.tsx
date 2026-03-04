@@ -1,3 +1,5 @@
+'use client';
+
 import { Github, Linkedin, Twitter, ArrowUpRight, Heart, Mail, MapPin } from 'lucide-react';
 import { useState, useEffect } from 'react';
 

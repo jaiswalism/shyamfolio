@@ -1,12 +1,11 @@
+'use client';
+
 import { motion } from 'framer-motion';
 import { Calendar, Briefcase, Award, Trophy, Zap } from 'lucide-react';
 
-// Swift Student Challenge Certification Stamp Component
-
-
 const experienceData = [
     {
-        role: "Incoming iOS App Developer Intern",
+        role: "iOS App Developer Intern",
         company: "Infosys",
         period: "Mar 2026",
         bullets: [
