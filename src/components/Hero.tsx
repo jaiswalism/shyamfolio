@@ -12,6 +12,7 @@ const Hero = () => {
                 <GridBackground />
                 <GlowingOrb className="top-[-10%] left-[-10%] w-[500px] h-[500px] bg-accent/20" />
                 <GlowingOrb className="bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-accent-secondary/20 delay-700" />
+                <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-b from-transparent to-dark" />
             </div>
 
             <div className="container-custom relative z-10 grid lg:grid-cols-2 gap-12 items-center">
@@ -79,9 +80,9 @@ const Hero = () => {
                         transition={{ duration: 0.5, delay: 0.5 }}
                         className="flex items-center gap-6 pt-8 text-text-muted"
                     >
-                        <a href="#" className="hover:text-accent transition-colors hover:scale-110 transform duration-200"><Github className="w-6 h-6" /></a>
-                        <a href="#" className="hover:text-accent transition-colors hover:scale-110 transform duration-200"><Linkedin className="w-6 h-6" /></a>
-                        <a href="#" className="hover:text-accent transition-colors hover:scale-110 transform duration-200"><Twitter className="w-6 h-6" /></a>
+                        <a href="https://github.com/jaiswalism" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors hover:scale-110 transform duration-200"><Github className="w-6 h-6" /></a>
+                        <a href="https://www.linkedin.com/in/jaiswalism" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors hover:scale-110 transform duration-200"><Linkedin className="w-6 h-6" /></a>
+                        <a href="https://twitter.com/jaiswalism" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors hover:scale-110 transform duration-200"><Twitter className="w-6 h-6" /></a>
                     </motion.div>
                 </div>
 

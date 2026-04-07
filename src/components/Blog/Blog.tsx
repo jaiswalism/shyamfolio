@@ -1,12 +1,11 @@
 'use client';
 
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
+import { motion } from 'framer-motion';
+import { useRef, useState, useEffect } from 'react';
 import { ArrowRight, Sparkles, Filter, Search } from 'lucide-react';
 import BlogCard, { BlogPost } from './BlogCard';
 import { GlowingOrb } from '../VisualEffects';
 
-// Sample blog data - replace with actual data fetching
 const blogPosts: BlogPost[] = [
     {
         id: '1',
@@ -86,17 +85,23 @@ const blogPosts: BlogPost[] = [
 const categories = ['All', 'Web3', 'Backend', 'iOS', 'Architecture', 'Thoughts'];
 
 const BlogHero = () => {
-    const containerRef = useRef<HTMLDivElement>(null);
-    const { scrollYProgress } = useScroll({
-        target: containerRef,
-        offset: ['start start', 'end start']
-    });
+    const [scrollOpacity, setScrollOpacity] = useState(1);
 
-    const y = useTransform(scrollYProgress, [0, 1], ['0%', '30%']);
-    const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+    useEffect(() => {
+        const handleScroll = () => {
+            const scrollY = window.scrollY;
+            const fadeStart = 0;
+            const fadeEnd = 400;
+            const opacity = Math.max(0, 1 - (scrollY - fadeStart) / (fadeEnd - fadeStart));
+            setScrollOpacity(opacity);
+        };
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
     return (
-        <div ref={containerRef} className="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
+        <div className="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
             {/* Background effects */}
             <GlowingOrb className="top-[10%] left-[20%] w-[400px] h-[400px] bg-accent/20" />
             <GlowingOrb className="bottom-[10%] right-[15%] w-[300px] h-[300px] bg-accent-secondary/20 delay-500" />
@@ -104,7 +109,10 @@ const BlogHero = () => {
             {/* Animated grid */}
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#1f2937_1px,transparent_1px),linear-gradient(to_bottom,#1f2937_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,#000_40%,transparent_100%)] opacity-30" />
 
-            <motion.div style={{ y, opacity }} className="relative z-10 text-center px-4">
+            <motion.div 
+                style={{ opacity: scrollOpacity }} 
+                className="relative z-10 text-center px-4"
+            >
                 {/* Floating tag */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -139,23 +147,6 @@ const BlogHero = () => {
                     Engineering insights, architectural decisions, and occasional musings
                     on building software that works.
                 </motion.p>
-
-                {/* Scroll indicator */}
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.8 }}
-                    className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-                >
-                    <span className="text-text-muted text-xs tracking-wider uppercase">Scroll</span>
-                    <motion.div
-                        animate={{ y: [0, 8, 0] }}
-                        transition={{ repeat: Infinity, duration: 1.5, ease: 'easeInOut' }}
-                        className="w-5 h-8 rounded-full border border-white/20 flex items-start justify-center p-1"
-                    >
-                        <div className="w-1 h-2 rounded-full bg-accent" />
-                    </motion.div>
-                </motion.div>
             </motion.div>
         </div>
     );
@@ -314,7 +305,7 @@ const HorizontalScroll = () => {
 
             <div
                 ref={scrollRef}
-                className="flex gap-6 overflow-x-auto pb-4 px-4 sm:px-6 lg:px-8 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-white/10"
+                className="flex gap-6 overflow-x-auto pt-3 pb-4 px-4 sm:px-6 lg:px-8 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-white/10"
                 style={{ scrollbarWidth: 'thin' }}
             >
                 {posts.map((post, i) => (

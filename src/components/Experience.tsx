@@ -82,7 +82,7 @@ const Experience = () => {
 
                     <div className="relative space-y-8">
                         {/* Vertical Line */}
-                        <div className="absolute left-4 md:left-2.5 top-2 bottom-2 w-px bg-white/10"></div>
+                        <div className="absolute left-[9px] md:left-[9px] top-2 bottom-2 w-px bg-white/10"></div>
 
                         {experienceData.map((item, index) => (
                             <motion.div
@@ -94,7 +94,7 @@ const Experience = () => {
                                 className="relative flex gap-8"
                             >
                                 {/* Timeline Node */}
-                                <div className={`absolute left-[9px] md:left-[3px] top-6 w-3 h-3 rounded-full bg-dark border border-accent z-10 ${item.isCurrent ? 'shadow-[0_0_12px_rgba(255,121,198,0.6)]' : 'shadow-[0_0_8px_rgba(255,121,198,0.4)]'}`}></div>
+                                <div className={`absolute left-[4px] md:left-[4px] top-7 w-[11px] h-[11px] rounded-full bg-dark border border-accent z-10 ${item.isCurrent ? 'shadow-[0_0_12px_rgba(255,121,198,0.6)]' : 'shadow-[0_0_8px_rgba(255,121,198,0.4)]'}`}></div>
 
                                 {/* Content */}
                                 <div className="flex-1 ml-8">
@@ -119,7 +119,7 @@ const Experience = () => {
                                         <ul className="space-y-2">
                                             {item.bullets.map((bullet, i) => (
                                                 <li key={i} className="text-text-muted text-sm leading-relaxed flex gap-2">
-                                                    <span className="text-accent/60 mt-1.5">▸</span>
+                                                    <span className="text-accent/60 mt-0.5 leading-none">▸</span>
                                                     <span>{bullet}</span>
                                                 </li>
                                             ))}
@@ -206,7 +206,7 @@ const Experience = () => {
                                 <span className="text-white">: Blockchain</span>
 
                                 <span className="text-text-muted">CGPA</span>
-                                <span className="text-white">: 9.71 / 10.00</span>
+                                <span className="text-white">: 9.62 / 10.00</span>
 
                                 <span className="text-text-muted">Status</span>
                                 <span className="text-accent">: In Progress</span>

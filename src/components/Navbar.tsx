@@ -8,10 +8,11 @@ import { usePathname } from 'next/navigation';
 
 const navLinks = [
     { href: '/', label: 'Home' },
-    { href: '/#projects', label: 'Projects' },
-    { href: '/#skills', label: 'Skills' },
-    { href: '/#experience', label: 'Experience' },
+    // { href: '/#projects', label: 'Projects' },
+    // { href: '/#skills', label: 'Skills' },
+    // { href: '/#experience', label: 'Experience' },
     { href: '/blog', label: 'Blog' },
+    { href: '/mint', label: 'Mint' },
 ];
 
 const Navbar = () => {
@@ -70,11 +71,10 @@ const Navbar = () => {
                 initial={{ y: -100 }}
                 animate={{ y: hidden ? -100 : 0 }}
                 transition={{ duration: 0.3, ease: 'easeInOut' }}
-                className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-                    scrolled
-                        ? 'bg-dark/80 backdrop-blur-xl border-b border-white/5 shadow-lg shadow-black/10'
-                        : 'bg-transparent'
-                }`}
+                className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
+                    ? 'bg-dark/80 backdrop-blur-xl border-b border-white/5 shadow-lg shadow-black/10'
+                    : 'bg-transparent'
+                    }`}
             >
                 <nav className="container-custom">
                     <div className="flex items-center justify-between h-16 md:h-20">
@@ -97,20 +97,15 @@ const Navbar = () => {
                                 <Link
                                     key={link.href}
                                     href={link.href}
-                                    className={`relative px-4 py-2 text-sm font-medium transition-colors rounded-lg group ${
-                                        isActive(link.href)
-                                            ? 'text-accent'
-                                            : 'text-text-secondary hover:text-white'
-                                    }`}
+                                    className={`relative px-4 py-2 text-sm font-medium transition-colors rounded-lg group ${isActive(link.href)
+                                        ? 'text-accent'
+                                        : 'text-text-secondary hover:text-white'
+                                        }`}
                                 >
                                     {link.label}
                                     {/* Active indicator */}
                                     {isActive(link.href) && (
-                                        <motion.div
-                                            layoutId="activeNav"
-                                            className="absolute inset-0 bg-accent/10 rounded-lg border border-accent/20"
-                                            transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                                        />
+                                        <div className="absolute inset-0 bg-accent/10 rounded-lg border border-accent/20" />
                                     )}
                                     {/* Hover effect */}
                                     <span className="absolute inset-0 bg-white/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -212,11 +207,10 @@ const Navbar = () => {
                                             >
                                                 <Link
                                                     href={link.href}
-                                                    className={`flex items-center justify-between px-4 py-3 rounded-lg transition-all ${
-                                                        isActive(link.href)
-                                                            ? 'bg-accent/10 text-accent border border-accent/20'
-                                                            : 'text-text-secondary hover:text-white hover:bg-white/5'
-                                                    }`}
+                                                    className={`flex items-center justify-between px-4 py-3 rounded-lg transition-all ${isActive(link.href)
+                                                        ? 'bg-accent/10 text-accent border border-accent/20'
+                                                        : 'text-text-secondary hover:text-white hover:bg-white/5'
+                                                        }`}
                                                 >
                                                     <span className="font-medium">{link.label}</span>
                                                     {isActive(link.href) && (
