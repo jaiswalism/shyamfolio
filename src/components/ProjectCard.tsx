@@ -1,82 +1,78 @@
-import { Github, ExternalLink, Activity, Layers, Code } from 'lucide-react';
+'use client';
+
+import { Github, ExternalLink, ArrowUpRight } from 'lucide-react';
 
 interface ProjectProps {
     title: string;
     description: string;
     tech: string[];
-    metrics?: { label: string; value: string }[];
+    role?: string;
     github?: string;
     live?: string;
     type?: string;
+    accent?: string;
 }
 
-const ProjectCard = ({ title, description, tech, metrics, github, live, type = "DApp" }: ProjectProps) => {
+const ProjectCard = ({ title, description, tech, role, github, live, type, accent = 'accent' }: ProjectProps) => {
     return (
         <div className="group relative h-full">
-            {/* Background Glow */}
-            <div className="absolute -inset-0.5 bg-gradient-to-r from-accent to-accent-secondary rounded-xl opacity-20 group-hover:opacity-60 blur transition duration-500"></div>
-
-            <div className="relative h-full bg-card-bg backdrop-blur-xl border border-white/10 rounded-xl p-6 flex flex-col overflow-hidden">
-                {/* Header / Type */}
-                <div className="flex justify-between items-start mb-4">
-                    <div className="flex items-center space-x-2 text-xs font-mono text-accent-cyan bg-accent-cyan/10 px-2 py-1 rounded border border-accent-cyan/20">
-                        <Activity size={12} />
-                        <span>{type}</span>
-                    </div>
-
-                    <div className="flex space-x-3 text-text-muted">
-                        {github && (
-                            <a href={github} target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors hover:scale-110">
-                                <Github size={18} />
+            <div className="relative h-full bg-card-bg border border-white/5 rounded-xl p-6 flex flex-col transition-all duration-300 hover:border-white/15 hover:bg-card-bg/80">
+                {/* Top row: type badge + links */}
+                <div className="flex justify-between items-start mb-5">
+                    {type && (
+                        <span className="text-[11px] font-mono text-text-muted tracking-wider uppercase">
+                            {type}
+                        </span>
+                    )}
+                    <div className="flex items-center gap-2 ml-auto">
+                        {github && github !== '#' && (
+                            <a
+                                href={github}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="p-1.5 rounded-md text-text-muted hover:text-white hover:bg-white/5 transition-all"
+                            >
+                                <Github size={15} />
                             </a>
                         )}
-                        {live && (
-                            <a href={live} target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors hover:scale-110">
-                                <ExternalLink size={18} />
+                        {live && live !== '#' && (
+                            <a
+                                href={live}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="p-1.5 rounded-md text-text-muted hover:text-white hover:bg-white/5 transition-all"
+                            >
+                                <ExternalLink size={15} />
                             </a>
                         )}
                     </div>
                 </div>
 
-                {/* Title & Description */}
-                <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-accent transition-colors">
+                {/* Title */}
+                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-accent transition-colors duration-200">
                     {title}
                 </h3>
 
+                {/* Role */}
+                {role && (
+                    <p className="text-xs font-mono text-accent/70 mb-3">{role}</p>
+                )}
+
+                {/* Description */}
                 <p className="text-text-secondary text-sm leading-relaxed mb-6 flex-grow">
                     {description}
                 </p>
 
-                {/* Metrics / Stats */}
-                {metrics && metrics.length > 0 && (
-                    <div className="grid grid-cols-2 gap-3 mb-6 p-3 bg-dark/40 rounded-lg border border-white/5">
-                        {metrics.map((m, i) => (
-                            <div key={i} className="flex flex-col">
-                                <span className="text-[10px] uppercase tracking-wider text-text-muted">{m.label}</span>
-                                <span className="text-secondary font-mono font-bold text-sm">{m.value}</span>
-                            </div>
-                        ))}
-                    </div>
-                )}
-
-                {/* Tech Stack */}
-                <div className="space-y-2 mt-auto">
-                    <div className="flex items-center space-x-2 text-xs text-text-muted mb-2">
-                        <Code size={12} />
-                        <span>Tech Stack</span>
-                    </div>
-                    <div className="flex flex-wrap gap-2">
-                        {tech.map((t) => (
-                            <span key={t} className="px-2 py-1 text-[10px] font-medium text-text-primary bg-white/5 hover:bg-white/10 rounded border border-white/5 transition-colors cursor-default">
-                                {t}
-                            </span>
-                        ))}
-                    </div>
-                </div>
-
-                {/* Decorative Elements */}
-                <div className="absolute bottom-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity pointer-events-none">
-                    <Layers size={80} />
+                {/* Tech tags */}
+                <div className="flex flex-wrap gap-1.5 mt-auto pt-4 border-t border-white/5">
+                    {tech.map((t) => (
+                        <span
+                            key={t}
+                            className="px-2 py-0.5 text-[11px] font-mono text-text-muted bg-white/[0.03] rounded border border-white/5"
+                        >
+                            {t}
+                        </span>
+                    ))}
                 </div>
             </div>
         </div>

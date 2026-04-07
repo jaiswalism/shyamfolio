@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "Shyam Jaiswal | Web3 Developer",
@@ -17,7 +19,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        {children}
+        <Navbar />
+        <main className="min-h-screen bg-dark text-text-primary overflow-x-hidden selection:bg-accent selection:text-dark">
+          {children}
+          <Footer />
+        </main>
       </body>
     </html>
   );
