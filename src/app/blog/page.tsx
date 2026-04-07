@@ -1,5 +1,4 @@
 import Blog from '@/components/Blog';
-import Layout from '@/components/Layout';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -9,8 +8,6 @@ export const metadata: Metadata = {
 
 export default function BlogPage() {
     return (
-        <Layout>
-            <Blog />
-        </Layout>
+        <Blog />
     );
 }
