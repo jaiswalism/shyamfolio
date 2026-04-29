@@ -11,7 +11,8 @@ const projects = [
         description: "Billing and service management system built for a logistics client. Handles service logs, route tracking, billing, and payments in a production environment.",
         tech: ["Backend Logic", "Data Modeling", "Business Rules"],
         github: "#",
-        live: "#"
+        live: "#",
+        image: "" // Placeholder: Add your image path here (e.g., "/images/veyro.png")
     },
     {
         title: "Rewind",
@@ -20,7 +21,8 @@ const projects = [
         description: "Native mental health companion app designed for privacy and calm. Implemented core state management and smooth performance with Swift and SwiftUI.",
         tech: ["Swift", "SwiftUI", "State Management"],
         github: "#",
-        live: "#"
+        live: "#",
+        image: "" // Placeholder: Add your image path here
     },
     {
         title: "CodePvP",
@@ -29,7 +31,8 @@ const projects = [
         description: "Real-time competitive coding platform for head-to-head matches. Built the backend judging logic and result processing for live code evaluation.",
         tech: ["Real-Time Systems", "Judging Logic", "Backend"],
         github: "#",
-        live: "#"
+        live: "#",
+        image: "" // Placeholder: Add your image path here
     },
     {
         title: "Taskify",
@@ -38,7 +41,8 @@ const projects = [
         description: "Productivity app with custom API design, secure authentication, and relational data modeling. Full ownership from database to frontend.",
         tech: ["React", "Node.js", "PostgreSQL"],
         github: "#",
-        live: "#"
+        live: "#",
+        image: "" // Placeholder: Add your image path here
     },
     {
         title: "Elyxir",
@@ -47,7 +51,8 @@ const projects = [
         description: "Decentralized application exploring EVM tooling integration and security-aware smart contract interaction.",
         tech: ["Solidity", "Ethers.js", "React"],
         github: "#",
-        live: "#"
+        live: "#",
+        image: "" // Placeholder: Add your image path here
     }
 ];
 
