@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Calendar, Briefcase, Award, Trophy, Zap } from 'lucide-react';
+import { Calendar, Briefcase, Award, Trophy, Zap, GraduationCap, Building2 } from 'lucide-react';
 
 const experienceData = [
     {
@@ -56,163 +56,149 @@ const achievementsData = [
 
 const Experience = () => {
     return (
-        <section className="py-20 bg-dark relative">
-            <div className="container-custom relative z-10 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+        <section id="experience" className="py-24 bg-dark relative">
+            <div className="container-custom relative z-10 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
                 <motion.div
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="flex items-center space-x-2 mb-16"
+                    className="mb-16 md:mb-24 flex flex-col md:flex-row md:items-end justify-between gap-4"
                 >
-                    <span className="w-8 h-1 bg-accent rounded-full"></span>
-                    <h2 className="text-3xl font-bold text-white">Career <span className="text-text-muted text-lg font-normal ml-2">{'// Trajectory'}</span></h2>
+                    <div>
+                        <div className="flex items-center gap-3 mb-4">
+                            <span className="w-8 h-[2px] bg-accent rounded-full"></span>
+                            <span className="text-accent text-sm font-mono tracking-widest uppercase font-semibold">Background</span>
+                        </div>
+                        <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight">
+                            Experience & Education
+                        </h2>
+                    </div>
                 </motion.div>
 
-                {/* SECTION 1: EXPERIENCE - Career Log Timeline */}
-                <div className="mb-20">
-                    <motion.div
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        className="mb-8"
-                    >
-                        <h3 className="text-xs font-mono text-accent/60 tracking-widest uppercase mb-2">SYSTEM LOG</h3>
-                        <h3 className="text-2xl font-bold text-white pl-4 border-l-4 border-accent">Experience</h3>
-                    </motion.div>
+                <div className="grid grid-cols-1 lg:grid-cols-[1.5fr_1fr] gap-16 lg:gap-24">
+                    {/* LEFT COLUMN: Experience */}
+                    <div>
+                        <h3 className="text-2xl font-bold text-white mb-10 flex items-center gap-3">
+                            <Briefcase className="text-accent" size={24} />
+                            Career History
+                        </h3>
+                        
+                        <div className="relative border-l border-white/10 ml-3 md:ml-4 space-y-12 pb-4">
+                            {experienceData.map((item, index) => (
+                                <motion.div
+                                    key={index}
+                                    initial={{ opacity: 0, x: -20 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    viewport={{ once: true, margin: "-100px" }}
+                                    transition={{ delay: index * 0.1, duration: 0.5 }}
+                                    className="relative pl-8 md:pl-10 group"
+                                >
+                                    {/* Timeline Node */}
+                                    <div className={`absolute left-[-5px] top-1.5 w-[10px] h-[10px] rounded-full transition-all duration-300 ${item.isCurrent ? 'bg-accent shadow-[0_0_12px_rgba(255,121,198,0.8)] scale-125' : 'bg-dark border-2 border-white/20 group-hover:border-accent'}`}></div>
 
-                    <div className="relative space-y-8">
-                        {/* Vertical Line */}
-                        <div className="absolute left-[9px] md:left-[9px] top-2 bottom-2 w-px bg-white/10"></div>
-
-                        {experienceData.map((item, index) => (
-                            <motion.div
-                                key={index}
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: index * 0.1 }}
-                                className="relative flex gap-8"
-                            >
-                                {/* Timeline Node */}
-                                <div className={`absolute left-[4px] md:left-[4px] top-7 w-[11px] h-[11px] rounded-full bg-dark border border-accent z-10 ${item.isCurrent ? 'shadow-[0_0_12px_rgba(255,121,198,0.6)]' : 'shadow-[0_0_8px_rgba(255,121,198,0.4)]'}`}></div>
-
-                                {/* Content */}
-                                <div className="flex-1 ml-8">
-                                    <div className={`p-6 bg-card-bg border rounded-xl transition-all duration-300 group ${item.isCurrent ? 'border-accent/20 shadow-[0_0_20px_rgba(255,121,198,0.15)]' : 'border-white/5 hover:border-accent/30'}`}>
-                                        {/* Company Name - Prominent */}
-                                        <div className="flex items-center gap-2 mb-2">
-                                            <Briefcase size={16} className="text-accent" />
-                                            <h4 className="text-xl font-bold text-white group-hover:text-accent transition-colors">{item.company}</h4>
-                                        </div>
-
-                                        {/* Role + Duration - Secondary */}
-                                        <div className="flex flex-wrap items-center gap-3 text-sm mb-4 font-mono text-text-secondary">
-                                            <span className="text-white/80">{item.role}</span>
-                                            <span className="text-accent/40">•</span>
-                                            <div className="flex items-center gap-1 text-accent/80">
-                                                <Calendar size={12} />
-                                                <span>{item.period}</span>
-                                            </div>
-                                        </div>
-
-                                        {/* Max 2 Bullets */}
-                                        <ul className="space-y-2">
-                                            {item.bullets.map((bullet, i) => (
-                                                <li key={i} className="text-text-muted text-sm leading-relaxed flex gap-2">
-                                                    <span className="text-accent/60 mt-0.5 leading-none">▸</span>
-                                                    <span>{bullet}</span>
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                </div>
-                            </motion.div>
-                        ))}
-                    </div>
-                </div>
-
-                {/* SECTION 2: ACHIEVEMENTS - Grid Badges */}
-                <div className="mb-20">
-                    <motion.div
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        className="mb-8"
-                    >
-                        <h3 className="text-xs font-mono text-accent/60 tracking-widest uppercase mb-2">SIGNAL BADGES</h3>
-                        <h3 className="text-2xl font-bold text-white pl-4 border-l-4 border-accent">Achievements</h3>
-                    </motion.div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                        {achievementsData.map((item, index) => (
-                            <motion.div
-                                key={index}
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: 0.3 + (index * 0.08) }}
-                                className="group"
-                            >
-                                <div className="h-full p-5 bg-card-bg border border-white/5 rounded-xl hover:border-accent/40 hover:shadow-[0_0_25px_rgba(255,121,198,0.2)] transition-all duration-200 hover:scale-[1.02] relative overflow-hidden">
-
-                                    <div className="flex items-start gap-3">
-                                        <div className="p-2 bg-accent/10 rounded-lg group-hover:bg-accent/20 transition-colors">
-                                            <item.icon size={18} className="text-accent" />
-                                        </div>
-                                        <div className="flex-1 min-w-0">
-                                            <h4 className="text-sm font-bold text-white leading-tight mb-2 group-hover:text-accent transition-colors">
-                                                {item.title}
-                                            </h4>
-                                            <span className="text-xs font-mono text-accent/60">{item.year}</span>
+                                    {/* Content */}
+                                    <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2 mb-2">
+                                        <h4 className="text-xl font-bold text-white group-hover:text-accent transition-colors duration-300">
+                                            {item.role}
+                                        </h4>
+                                        <div className="flex items-center gap-1.5 text-xs font-mono text-accent/80 bg-accent/10 px-3 py-1.5 rounded-full w-fit border border-accent/20">
+                                            <Calendar size={13} />
+                                            <span>{item.period}</span>
                                         </div>
                                     </div>
-                                </div>
-                            </motion.div>
-                        ))}
+                                    
+                                    <div className="flex items-center gap-2 text-text-muted font-medium mb-5">
+                                        <Building2 size={16} />
+                                        <span className="text-[15px]">{item.company}</span>
+                                    </div>
+
+                                    <ul className="space-y-3 mt-4">
+                                        {item.bullets.map((bullet, i) => (
+                                            <li key={i} className="text-text-secondary text-sm leading-relaxed flex items-start gap-3 group/bullet">
+                                                <span className="text-white/20 mt-1 transition-colors group-hover/bullet:text-accent">▹</span>
+                                                <span className="flex-1">{bullet}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </motion.div>
+                            ))}
+                        </div>
                     </div>
-                </div>
 
-                {/* SECTION 3: EDUCATION - System Metadata Block */}
-                <div>
-                    <motion.div
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        className="mb-8"
-                    >
-                        <h3 className="text-xs font-mono text-accent/60 tracking-widest uppercase mb-2">SYSTEM METADATA</h3>
-                        <h3 className="text-2xl font-bold text-white pl-4 border-l-4 border-accent">Education</h3>
-                    </motion.div>
-
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.5 }}
-                        className="p-6 bg-card-bg/50 border border-white/10 rounded-lg"
-                    >
-                        <div className="font-mono text-sm space-y-3 text-text-secondary">
-                            <div className="text-accent/80 text-xs tracking-wider border-b border-white/5 pb-2 mb-3">
-                                SYSTEM: EDUCATION
-                            </div>
-                            <div className="grid grid-cols-[140px_1fr] gap-x-4 gap-y-2">
-                                <span className="text-text-muted">Institution</span>
-                                <span className="text-white">: SRM Institute of Science & Technology</span>
-
-                                <span className="text-text-muted">Degree</span>
-                                <span className="text-white">: B.Tech in Computer Science & Engineering</span>
-
-                                <span className="text-text-muted">Specialization</span>
-                                <span className="text-white">: Blockchain</span>
-
-                                <span className="text-text-muted">CGPA</span>
-                                <span className="text-white">: 9.62 / 10.00</span>
-
-                                <span className="text-text-muted">Status</span>
-                                <span className="text-accent">: In Progress</span>
+                    {/* RIGHT COLUMN: Achievements & Education */}
+                    <div className="space-y-16">
+                        {/* Achievements */}
+                        <div>
+                            <h3 className="text-2xl font-bold text-white mb-8 flex items-center gap-3">
+                                <Award className="text-accent" size={24} />
+                                Achievements
+                            </h3>
+                            
+                            <div className="space-y-4">
+                                {achievementsData.map((item, index) => (
+                                    <motion.div
+                                        key={index}
+                                        initial={{ opacity: 0, x: 20 }}
+                                        whileInView={{ opacity: 1, x: 0 }}
+                                        viewport={{ once: true }}
+                                        transition={{ delay: index * 0.1 }}
+                                        className="group flex items-center gap-4 p-4 bg-white/[0.02] border border-white/5 rounded-xl hover:bg-white/[0.04] hover:border-accent/30 transition-all duration-300 shadow-sm"
+                                    >
+                                        <div className="p-3 bg-card-bg border border-white/5 rounded-lg group-hover:border-accent/40 group-hover:text-accent group-hover:shadow-[0_0_15px_rgba(255,121,198,0.15)] transition-all">
+                                            <item.icon size={20} className="text-accent group-hover:scale-110 transition-transform" />
+                                        </div>
+                                        <div className="flex-1">
+                                            <h4 className="text-white font-medium group-hover:text-accent transition-colors leading-tight">{item.title}</h4>
+                                        </div>
+                                        <div className="text-xs font-mono text-text-muted bg-white/[0.03] px-2.5 py-1 rounded-md border border-white/5 group-hover:text-white group-hover:border-white/20 transition-colors">
+                                            {item.year}
+                                        </div>
+                                    </motion.div>
+                                ))}
                             </div>
                         </div>
-                    </motion.div>
+
+                        {/* Education */}
+                        <div>
+                            <h3 className="text-2xl font-bold text-white mb-10 flex items-center gap-3">
+                                <GraduationCap className="text-accent" size={24} />
+                                Education
+                            </h3>
+                            
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                className="group relative bg-card-bg border border-white/5 rounded-2xl p-8 hover:border-white/10 transition-all duration-500 overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-black/50"
+                            >
+                                <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                                
+                                <div className="relative z-10">
+                                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 border border-accent/20 text-accent text-xs font-mono mb-6 shadow-sm">
+                                        <span className="relative flex h-2 w-2">
+                                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
+                                          <span className="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
+                                        </span>
+                                        In Progress
+                                    </div>
+                                    
+                                    <h4 className="text-xl font-bold text-white mb-2 leading-tight">B.Tech in Computer Science</h4>
+                                    <p className="text-text-secondary mb-8 font-medium">SRM Institute of Science & Technology</p>
+                                    
+                                    <div className="grid grid-cols-2 gap-6 pt-6 border-t border-white/5">
+                                        <div>
+                                            <p className="text-text-muted text-[11px] uppercase tracking-wider mb-1 font-semibold">Specialization</p>
+                                            <p className="text-white font-medium text-sm">Blockchain</p>
+                                        </div>
+                                        <div>
+                                            <p className="text-text-muted text-[11px] uppercase tracking-wider mb-1 font-semibold">CGPA</p>
+                                            <p className="text-white font-medium text-sm">9.62 / 10.0</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </motion.div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
