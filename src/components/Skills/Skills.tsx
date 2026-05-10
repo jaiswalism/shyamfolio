@@ -13,7 +13,7 @@ const techStack: TechIconName[] = [
     'Express.js',
     'Hono',
     'Bun',
-    'Python',
+    // 'Python',
     'C++',
     'Supabase',
     'MongoDB',

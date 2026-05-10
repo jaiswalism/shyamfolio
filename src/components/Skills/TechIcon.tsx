@@ -7,7 +7,7 @@ import Figma from "./icons/figma.svg";
 import Swift from "./icons/swift.svg";
 import Cpp from "./icons/cpp.svg";
 import MongoDB from "./icons/mongodb.svg";
-import Python from "./icons/python.svg";
+// import Python from "./icons/python.svg";
 import ReactIcon from "./icons/react.svg";
 import NextIcon from "./icons/nextjs.svg";
 import TypeScriptIcon from "./icons/typescript.svg";
@@ -26,7 +26,7 @@ const iconMap = {
     Swift,
     "C++": Cpp,
     MongoDB,
-    Python,
+    // Python,
     React: ReactIcon,
     "Next.js": NextIcon,
     TypeScript: TypeScriptIcon,

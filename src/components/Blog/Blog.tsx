@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { Rss } from 'lucide-react';
+import Image from 'next/image';
 import BlogCard, { BlogPost } from './BlogCard';
 
 const blogPosts: BlogPost[] = [
@@ -99,14 +100,14 @@ const BlogHero = () => {
     }, []);
 
     return (
-        <div className="relative pt-32 pb-24 flex items-center justify-center overflow-hidden border-b border-white/5">
-            {/* Subtle Spotlight Background */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[400px] opacity-30 pointer-events-none">
-                <div className="absolute inset-0 bg-gradient-to-b from-accent/20 to-transparent blur-3xl rounded-full mix-blend-screen" />
+        <div className="relative pt-40 pb-24 flex items-center justify-center overflow-hidden">
+            {/* Subtle Spotlight Background (kept for extra glow effect if needed, but reduced opacity) */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[400px] opacity-20 pointer-events-none">
+                <div className="absolute inset-0 bg-gradient-to-b from-accent/10 to-transparent blur-3xl rounded-full mix-blend-screen" />
             </div>
 
-            <motion.div 
-                style={{ opacity: scrollOpacity }} 
+            <motion.div
+                style={{ opacity: scrollOpacity }}
                 className="relative z-10 text-center px-4 max-w-4xl mx-auto"
             >
                 {/* Tag */}
@@ -116,7 +117,7 @@ const BlogHero = () => {
                     transition={{ duration: 0.4 }}
                     className="inline-flex items-center gap-2 mb-6"
                 >
-                    <span className="text-xs font-mono text-text-muted tracking-widest uppercase">Writing</span>
+                    <span className="text-xs font-mono text-accent tracking-widest uppercase bg-accent/10 px-3 py-1.5 rounded-full border border-accent/20">Writing</span>
                 </motion.div>
 
                 {/* Main title */}
@@ -124,10 +125,10 @@ const BlogHero = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.1 }}
-                    className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[1.1] mb-6"
+                    className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[1.1] mb-6 drop-shadow-2xl"
                 >
                     <span className="text-white">The </span>
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent via-accent-secondary to-accent">
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-400">
                         Blog
                     </span>
                 </motion.h1>
@@ -137,7 +138,7 @@ const BlogHero = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.2 }}
-                    className="text-text-secondary text-lg md:text-xl max-w-2xl mx-auto leading-relaxed font-light"
+                    className="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed font-light drop-shadow-md"
                 >
                     Engineering insights, architectural decisions, and occasional musings
                     on building software that works.
@@ -156,11 +157,10 @@ const CategoryFilter = ({ activeCategory, setActiveCategory }: { activeCategory:
                     <button
                         key={cat}
                         onClick={() => setActiveCategory(cat)}
-                        className={`px-4 py-2 text-sm font-medium rounded-full transition-all ${
-                            activeCategory === cat
-                                ? 'bg-white text-black'
-                                : 'bg-transparent text-text-muted hover:text-white'
-                        }`}
+                        className={`px-4 py-2 text-sm font-medium rounded-full transition-all ${activeCategory === cat
+                            ? 'bg-white text-black'
+                            : 'bg-transparent text-text hover:text-white'
+                            }`}
                     >
                         {cat}
                     </button>
@@ -171,8 +171,8 @@ const CategoryFilter = ({ activeCategory, setActiveCategory }: { activeCategory:
 };
 
 const BlogGrid = ({ activeCategory }: { activeCategory: string }) => {
-    const filteredPosts = activeCategory === 'All articles' 
-        ? blogPosts 
+    const filteredPosts = activeCategory === 'All articles'
+        ? blogPosts
         : blogPosts.filter(p => p.category === activeCategory);
 
     return (
@@ -182,7 +182,7 @@ const BlogGrid = ({ activeCategory }: { activeCategory: string }) => {
                     <BlogCard key={post.id} post={post} index={i} />
                 ))}
             </div>
-            
+
             {filteredPosts.length === 0 && (
                 <div className="text-center py-24">
                     <p className="text-text-muted text-lg">No articles found in this category.</p>
@@ -196,14 +196,29 @@ const Blog = () => {
     const [activeCategory, setActiveCategory] = useState('All articles');
 
     return (
-        <div className="min-h-screen bg-[#0A0A0A]">
-            {/* Hero */}
-            <BlogHero />
+        <div className="relative min-h-screen bg-[#0A0A0A] selection:bg-accent/30 selection:text-accent-secondary">
+            {/* Background Image Container */}
+            <div className="absolute -top-5 left-0 right-0 h-[820px] w-full z-0 overflow-hidden pointer-events-none">
+                <Image
+                    src="/blog-bg.webp"
+                    alt="Background"
+                    fill
+                    className="object-cover object-top opacity-80 mix-blend-screen"
+                    priority
+                />
+                {/* Gradient overlay to fade smoothly into the black background below */}
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent from-60% to-[#0A0A0A] to-100%" />
+            </div>
 
-            {/* Main content */}
-            <div className="container-custom py-8 max-w-6xl mx-auto px-4 md:px-8">
-                <CategoryFilter activeCategory={activeCategory} setActiveCategory={setActiveCategory} />
-                <BlogGrid activeCategory={activeCategory} />
+            <div className="relative z-10">
+                {/* Hero */}
+                <BlogHero />
+
+                {/* Main content */}
+                <div className="container-custom py-8 max-w-6xl mx-auto px-4 md:px-8">
+                    <CategoryFilter activeCategory={activeCategory} setActiveCategory={setActiveCategory} />
+                    <BlogGrid activeCategory={activeCategory} />
+                </div>
             </div>
         </div>
     );
